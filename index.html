@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Hub Nepal - Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0c1c3c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .menu-toggle {
+      font-size: 24px;
+      color: white;
+      display: block;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      position: absolute;
+      top: 60px; /* Below the header */
+      right: 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    .nav-links a {
+      padding: 10px 20px;
+      color: #0c1c3c;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+
+    .nav-links a:hover {
+      background: #f0f0f0;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero {
+      color: #0c1c3c;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+    }
+
+    .ranking-system {
+      display: flex;
+      flex-direction: column; /* Changed to column layout for courses */
+      align-items: center; /* Center align */
+      margin: 20px 0;
+    }
+
+    .ranking-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 80%; /* Adjusted width */
+      margin-bottom: 20px; /* Space between cards */
+    }
+
+    .ranking-card img {
+      width: 100px; /* Image size */
+      height: 100px; /* Image size */
+      border-radius: 50%; /* Circular image */
+      margin-bottom: 10px; /* Space below image */
+    }
+
+    .ranking-card h3 {
+      margin: 0;
+      color: #0c1c3c;
+    }
+
+    .learner-ranking {
+      display: flex; /* Flexbox for horizontal layout */
+      justify-content: center; /* Center align */
+      margin: 20px 0;
+    }
+
+    .learner-card {
+      text-align: center;
+      margin: 0 10px; /* Space between learner cards */
+    }
+
+    .footer {
+      background: #0c1c3c;
+      color: white;
+      padding: 40px 20px 30px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer p {
+      font-weight: bold;
+      color: #e0e0e0; /* Light color for better contrast */
+    }
+
+    .social-icons img {
+      height: 30px;
+      margin: 10px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 60px;
+      font-size: 30px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    /* Additional styles for better visuals */
+    h1, h2 {
+      color: #0c1c3c;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .ranking-card p {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo-image.png" alt="Knowledge Hub Nepal" />
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+  </header>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a> <!-- Added Home button -->
+    <a href="courses.html">Courses</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="sign-up.html">Sign Up</a>
+  </div>
+
+  <div class="main-content">
+    <div class="hero">
+      Welcome to Knowledge Hub Nepal - Your Gateway to Learning and Success!
+    </div>
+
+    <div class="description">
+      <h2>About Us</h2>
+      <p>At Knowledge Hub Nepal, we are dedicated to providing high-quality educational resources and courses to help you enhance your skills and achieve your career goals. Our platform connects learners with industry experts and offers a variety of courses tailored to meet the needs of today's job market.</p>
+    </div>
+
+    <h2>Top Courses</h2>
+    <div class="ranking-system">
+      <div class="ranking-card">
+        <img src="course1-image.jpg" alt="Course 1 Image" />
+        <h3>Course 1</h3>
+        <p>Rank: 1</p>
+        <p>Details about Course 1</p>
+      </div>
+      <div class="ranking-card">
+        <img src="course2-image.jpg" alt="Course 2 Image" />
+        <h3>Course 2</h3>
+        <p>Rank: 2</p>
+        <p>Details about Course 2</p>
+      </div>
+      <div class="ranking-card">
+        <img src="course3-image.jpg" alt="Course 3 Image" />
+        <h3>Course 3</h3>
+        <p>Rank: 3</p>
+        <p>Details about Course 3</p>
+      </div>
+    </div>
+
+    <h2>Top Learners</h2>
+    <div class="learner-ranking">
+      <div class="learner-card">
+        <img src="studentA-image.jpg" alt="Student A Image" />
+        <h3>1</h3>
+        <p>Earnings: $500</p>
+      </div>
+      <div class="learner-card">
+        <img src="studentB-image.jpg" alt="Student B Image" />
+        <h3>2</h3>
+        <p>Earnings: $400</p>
+      </div>
+      <div class="learner-card">
+        <img src="studentC-image.jpg" alt="Student C Image" />
+        <h3>3</h3>
+        <p>Earnings: $300</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div>
+      <img src="logo-image.png" alt="Logo" height="50" />
+      <p style="margin-top: 10px;">Enhanced Skills, Achieved Success</p>
+    </div>
+    <div class="social-icons">
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png"/></a>
+    </div>
+    <p style="margin-top: 10px;">© 2025 <strong>Knowledge Hub Nepal</strong>. All Rights Reserved.<br>Developed By: <strong>Techup Technologies</strong></p>
+  </footer>
+
+  <a href="https://wa.me/9779812345678" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
+    }
+  </script>
+
+</body>
+</html>
