@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Hub Nepal - Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0c1c3c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .menu-toggle {
+      font-size: 24px;
+      color: white;
+      display: block;
+    }
+
+    .main-content {
+      flex: 1;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #f9f9f9;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #333;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+
+    .remember-forgot input {
+      margin-right: 8px;
+    }
+
+    .remember-forgot a {
+      color: #ff7a00;
+      text-decoration: none;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #0052cc, #2d9cdb);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(to right, #0041a8, #238ec9);
+    }
+
+    footer {
+      background: #0c1c3c;
+      color: white;
+      padding: 40px 20px 30px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .social-icons img {
+      height: 30px;
+      margin: 10px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 60px;
+      font-size: 30px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+  </style>
+
+  <!-- Font Awesome for eye icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo-image.png" alt="Knowledge Hub Nepal"height="50" />
+    </div>
+    <div class="menu-toggle">&#9776;</div>
+  </header>
+
+  <div class="main-content">
+    <div class="form-container">
+      <form id="loginForm" onsubmit="return validateForm()">
+        <label for="email">Enter Email Id</label>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email Id" />
+        </div>
+        <div class="error" id="emailError">The email field is required.</div>
+
+        <label for="password">Password</label>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Enter Password..." />
+          <span class="toggle-password" onclick="togglePassword()">
+            <i class="fa fa-eye"></i>
+          </span>
+        </div>
+        <div class="error" id="passwordError">The password field is required.</div>
+
+        <div class="remember-forgot">
+          <label><input type="checkbox" /> Remember me</label>
+          <a href="#">Forgot your password ?</a>
+        </div>
+
+        <button type="submit" class="submit-btn">SUBMIT →</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <img src="logo-image.png" alt="Logo" height="50" />
+      <p style="margin-top: 10px;">Enhanced Skills, Achieved Success</p>
+    </div>
+    <div class="social-icons">
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png"/></a>
+    </div>
+    <p style="margin-top: 10px;">© 2025 Knowledge Hub Nepal. All Rights Reserved.<br>Developed By: Techup Technologies</p>
+  </footer>
+
+  <a href="https://wa.me/9779812345678" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+
+    function validateForm() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      let valid = true;
+
+      document.getElementById("emailError").style.display = "none";
+      document.getElementById("passwordError").style.display = "none";
+
+      if (!email) {
+        document.getElementById("emailError").style.display = "block";
+        valid = false;
+      }
+
+      if (!password) {
+        document.getElementById("passwordError").style.display = "block";
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+
+</body>
+            </html>
+            
