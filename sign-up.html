@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Hub Nepal - Sign Up</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0c1c3c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .menu-toggle {
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      position: absolute;
+      top: 60px; /* Below the header */
+      right: 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    .nav-links a {
+      padding: 10px 20px;
+      color: #0c1c3c;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+
+    .nav-links a:hover {
+      background: #f0f0f0;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #0c1c3c;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #f9f9f9;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #0052cc, #2d9cdb);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(to right, #0041a8, #238ec9);
+    }
+
+    .whatsapp-float {
+      position: fixed; /* Fixed position for sticky effect */
+      bottom: 20px;
+      left: 20px; /* Positioned on the left */
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 60px;
+      font-size: 30px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    footer {
+      background: #0c1c3c;
+      color: white;
+      padding: 20px 0; /* Reduced padding to eliminate gaps */
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo-image.png" alt="Knowledge Hub Nepal" height="50" />
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+  </header>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="sign-in.html">Sign In</a>
+  </div>
+
+  <div class="main-content">
+    <div class="form-container">
+      <h2>Create Account</h2>
+      <form id="signupForm" onsubmit="return signUp()">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <div class="error" id="emailError">This email is already registered.</div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create a password" required />
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required />
+        <div class="error" id="passwordError">Passwords do not match.</div>
+
+        <button type="submit" class="submit-btn">SIGN UP</button>
+      </form>
+    </div>
+    <a href="https://wa.me/9779812345678" class="whatsapp-float" target="_blank">💬</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Knowledge Hub Nepal. All Rights Reserved.<br>Developed By: Techup Technologies</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
+    }
+
+    function signUp() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+
+      // Reset error messages
+      emailError.style.display = "none";
+      passwordError.style.display = "none";
+
+      // Check if email already exists in local storage
+      const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+      const emailExists = existingUsers.some(user => user.email === email);
+
+      if (emailExists) {
+        emailError.style.display = "block";
+        return false;
+      }
+
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        passwordError.style.display = "block";
+        return false;
+      }
+
+      // Store new user in local storage
+      existingUsers.push({ name, email, password });
+      localStorage.setItem("users", JSON.stringify(existingUsers));
+
+      alert("Sign up successful! You can now log in.");
+      window.location.href = "sign-in.html"; // Redirect to login page
+      return false; // Prevent form submission
+    }
+  </script>
+
+</body>
+</html>
