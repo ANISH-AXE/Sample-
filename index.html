@@ -76,7 +76,7 @@
     .hero {
       color: #0c1c3c;
       margin-bottom: 20px;
-      font-size: 24px;
+      font-size: 28px; /* Increased font size */
       font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
@@ -87,12 +87,14 @@
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: 20px 0;
+      font-size: 18px; /* Increased font size */
+      line-height: 1.8; /* Increased line height */
     }
 
     .ranking-system {
       display: flex;
-      flex-direction: column; /* Changed to column layout for courses */
-      align-items: center; /* Center align */
+      flex-direction: column;
+      align-items: center;
       margin: 20px 0;
     }
 
@@ -102,31 +104,51 @@
       padding: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       text-align: center;
-      width: 80%; /* Adjusted width */
-      margin-bottom: 20px; /* Space between cards */
+      width: 80%;
+      margin-bottom: 20px;
     }
 
     .ranking-card img {
-      width: 100px; /* Image size */
-      height: 100px; /* Image size */
-      border-radius: 50%; /* Circular image */
-      margin-bottom: 10px; /* Space below image */
+      width: 150px; /* Square shape */
+      height: 250px; /* Increased height */
+      border-radius: 5px; /* Slightly rounded corners */
+      margin-bottom: 10px;
     }
 
     .ranking-card h3 {
       margin: 0;
       color: #0c1c3c;
+      font-size: 22px; /* Increased font size */
     }
 
     .learner-ranking {
-      display: flex; /* Flexbox for horizontal layout */
-      justify-content: center; /* Center align */
+      display: flex;
+      justify-content: center;
       margin: 20px 0;
+      flex-direction: column; /* Stack learners vertically */
+      align-items: center; /* Center align */
+    }
+
+    .learner-row {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0; /* Space between rows */
     }
 
     .learner-card {
       text-align: center;
-      margin: 0 10px; /* Space between learner cards */
+      margin: 0 10px;
+    }
+
+    .learner-card img {
+      width: 60px; /* Increased size */
+      height: 60px; /* Increased size */
+      border-radius: 50%; /* Circular shape */
+    }
+
+    .learner-card h3 {
+      font-size: 24px; /* Increased font size */
+      color: #0c1c3c;
     }
 
     .footer {
@@ -139,7 +161,7 @@
 
     .footer p {
       font-weight: bold;
-      color: #e0e0e0; /* Light color for better contrast */
+      color: #e0e0e0;
     }
 
     .social-icons img {
@@ -169,9 +191,9 @@
       z-index: 1000;
     }
 
-    /* Additional styles for better visuals */
     h1, h2 {
       color: #0c1c3c;
+      font-weight: bold; /* Added bold styling */
     }
 
     p {
@@ -181,6 +203,7 @@
 
     .ranking-card p {
       color: #666;
+      font-size: 16px; /* Increased font size */
     }
   </style>
 </head>
@@ -194,7 +217,7 @@
   </header>
 
   <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a> <!-- Added Home button -->
+    <a href="index.html">Home</a>
     <a href="courses.html">Courses</a>
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact Us</a>
@@ -214,41 +237,47 @@
     <h2>Top Courses</h2>
     <div class="ranking-system">
       <div class="ranking-card">
-        <img src="course1-image.jpg" alt="Course 1 Image" />
+        <a href="course1.html"><img src="mini-lite.png" alt="Course 1 Image" /></a>
         <h3>Course 1</h3>
-        <p>Rank: 1</p>
         <p>Details about Course 1</p>
       </div>
       <div class="ranking-card">
-        <img src="course2-image.jpg" alt="Course 2 Image" />
+        <a href="course2.html"><img src="lite.png" alt="Course 2 Image" /></a>
         <h3>Course 2</h3>
-        <p>Rank: 2</p>
         <p>Details about Course 2</p>
       </div>
       <div class="ranking-card">
-        <img src="course3-image.jpg" alt="Course 3 Image" />
+        <a href="course3.html"><img src="ultra.png" alt="Course 3 Image" /></a>
         <h3>Course 3</h3>
-        <p>Rank: 3</p>
         <p>Details about Course 3</p>
+      </div>
+      <div class="ranking-card">
+        <a href="course4.html"><img src="pro.png" alt="Course 4 Image" /></a>
+        <h3>Course 4</h3>
+        <p>Details about Course 4</p>
       </div>
     </div>
 
     <h2>Top Learners</h2>
     <div class="learner-ranking">
-      <div class="learner-card">
-        <img src="studentA-image.jpg" alt="Student A Image" />
-        <h3>1</h3>
-        <p>Earnings: $500</p>
+      <div class="learner-row">
+        <div class="learner-card">
+          <img src="man-2.png" alt="Student B Image" />
+          <h3>2</h3>
+          <p>Earnings: $400</p>
+        </div>
       </div>
-      <div class="learner-card">
-        <img src="studentB-image.jpg" alt="Student B Image" />
-        <h3>2</h3>
-        <p>Earnings: $400</p>
-      </div>
-      <div class="learner-card">
-        <img src="studentC-image.jpg" alt="Student C Image" />
-        <h3>3</h3>
-        <p>Earnings: $300</p>
+      <div class="learner-row">
+        <div class="learner-card">
+          <img src="man-1.png" alt="Student A Image" />
+          <h3>1</h3>
+          <p>Earnings: $500</p>
+        </div>
+        <div class="learner-card">
+          <img src="man-3.png" alt="Student C Image" />
+          <h3>3</h3>
+          <p>Earnings: $300</p>
+        </div>
       </div>
     </div>
   </div>
@@ -259,11 +288,11 @@
       <p style="margin-top: 10px;">Enhanced Skills, Achieved Success</p>
     </div>
     <div class="social-icons">
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png"/></a>
+      <a href="https://www.facebook.com/prajjwal.kc108t" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"/></a>
+      <a href="https://youtube.com/yourchannelname" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png"/></a>
+      <a href="https://instagram.com/yourusername" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/></a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"/></a>
+      <a href="https://t.me/yourusername" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png"/></a>
     </div>
     <p style="margin-top: 10px;">© 2025 <strong>Knowledge Hub Nepal</strong>. All Rights Reserved.<br>Developed By: <strong>Techup Technologies</strong></p>
   </footer>
