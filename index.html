@@ -2,309 +2,690 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Knowledge Hub Nepal - Home</title>
   <style>
-    * {
+    /* Reset and base */
+    *, *::before, *::after {
       box-sizing: border-box;
     }
-
-    html, body {
-      margin: 0;
+    
+    body, html {
+      margin: 0; 
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f6f9;
-      overflow-x: hidden;
-      height: 100%;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
+      background: #e6f0f3;
+      color: #6b7280;
+      line-height: 1.6;
       min-height: 100vh;
+      scroll-behavior: smooth;
+      transition: background-color 0.5s ease;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      width: 100%;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      width: 100%;
+    }
+
+    /* Header */
     header {
-      background: #0c1c3c;
-      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      background: #ffffffcc;
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+      font-weight: 600;
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      width: 100%;
+    }
+
+    nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      width: 100%;
     }
 
     .logo img {
-      height: 50px;
-    }
-
-    .menu-toggle {
-      font-size: 24px;
-      color: white;
+      height: 40px;
       display: block;
-      cursor: pointer;
+      max-width: 100%;
     }
 
     .nav-links {
-      display: none; /* Hidden by default */
-      flex-direction: column;
-      position: absolute;
-      top: 60px; /* Below the header */
-      right: 20px;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      z-index: 1000;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      color: #374151;
+      font-size: 1rem;
+      user-select: none;
+      flex-wrap: nowrap;
     }
 
     .nav-links a {
-      padding: 10px 20px;
-      color: #0c1c3c;
-      text-decoration: none;
-      font-weight: bold;
-      display: block;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+      border-bottom: 3px solid transparent;
+      border-radius: 4px 4px 0 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      white-space: nowrap;
     }
 
-    .nav-links a:hover {
-      background: #f0f0f0;
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: #111827;
+      border-bottom-color: #2563eb;
+      outline: none;
     }
 
-    .main-content {
-      flex: 1;
-      padding: 20px;
-      text-align: center;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background: #2563eb;
+      border-radius: 4px 4px 0 0;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
     }
 
-    .hero {
-      color: #0c1c3c;
-      margin-bottom: 20px;
-      font-size: 28px; /* Increased font size */
-      font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    .description {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      margin: 20px 0;
-      font-size: 18px; /* Increased font size */
-      line-height: 1.8; /* Increased line height */
-    }
-
-    .ranking-system {
-      display: flex;
-      flex-direction: column;
+    /* Hamburger button - FIXED VERSION */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #374151;
+      user-select: none;
+      padding: 0.5rem;
+      position: relative;
+      z-index: 1100;
+      transition: color 0.3s ease;
+      width: 44px;
+      height: 44px;
       align-items: center;
-      margin: 20px 0;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      color: #2563eb;
+      outline: none;
+    }
+
+    /* Responsive Nav for small screens */
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+
+      nav {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        background: #ffffffee;
+        flex-direction: column;
+        width: min(250px, 85vw);
+        height: calc(100vh - 64px);
+        box-shadow: -2px 0 20px rgb(0 0 0 / 0.1);
+        border-radius: 0 0 0 12px;
+        padding-top: 1.5rem;
+        transition: transform 0.3s ease;
+        transform: translateX(100%);
+        overflow-y: auto;
+        backdrop-filter: saturate(180%) blur(10px);
+        gap: 0;
+      }
+
+      .nav-links.show {
+        transform: translateX(0);
+      }
+
+      .nav-links a {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #e5e7eb;
+        border-radius: 0;
+        font-weight: 600;
+        text-align: left;
+      }
+      
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        font-size: clamp(24px, 6vw, 48px) !important;
+        margin-top: 3rem !important;
+        padding: 0 0.5rem;
+      }
+
+      .description-card {
+        padding: 2rem 1.5rem !important;
+        margin: 0 0.5rem;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      color: #111827;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      max-width: 100%;
+      user-select: none;
+      padding: 0 1rem;
+      word-wrap: break-word;
+    }
+
+    .subtext {
+      font-size: clamp(16px, 3vw, 18px);
+      max-width: 100%;
+      margin-bottom: 4rem;
+      color: #6b7280;
+      line-height: 1.5;
+      user-select: none;
+      padding: 0 1rem;
+    }
+
+    .btn-primary {
+      background-color: #2563eb;
+      color: white;
+      padding: 0.875rem 2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-size: clamp(16px, 3vw, 18px);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      box-shadow: 0 10px 15px -3px rgb(37 99 235 / 0.4);
+      max-width: 100%;
+    }
+    
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: #1e40af;
+      outline: none;
+      box-shadow: 0 15px 25px -5px rgb(29 78 216 / 0.6);
+    }
+
+    /* Sections styling */
+    section {
+      padding-top: 3rem;
+      padding-bottom: 4rem;
+      user-select: none;
+      width: 100%;
+    }
+    
+    h2.section-title {
+      font-weight: 700;
+      font-size: clamp(24px, 5vw, 36px);
+      color: #111827;
+      margin-bottom: 2.5rem;
+      user-select: none;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    /* Description */
+    .description-card {
+      max-width: 800px;
+      background: #ffffff;
+      padding: 2.5rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px rgb(0 0 0 / 0.05);
+      margin-left: auto;
+      margin-right: auto;
+      color: #4b5563;
+      font-size: clamp(16px, 3vw, 18px);
+      line-height: 1.7;
+      user-select: none;
+      width: calc(100% - 2rem);
+    }
+
+    /* Ranking system - uses grid */
+    .ranking-system {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      width: 100%;
     }
 
     .ranking-card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 2rem;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.05);
       text-align: center;
-      width: 80%;
-      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.04));
+      backdrop-filter: saturate(180%) blur(4px);
+      width: 100%;
     }
-
+    
+    .ranking-card:hover,
+    .ranking-card:focus-within {
+      box-shadow: 0 16px 40px rgb(0 0 0 / 0.12);
+      outline: none;
+      filter: drop-shadow(0 6px 12px rgb(0 0 0 / 0.08));
+    }
+    
     .ranking-card img {
-      width: 150px; /* Square shape */
-      height: 250px; /* Increased height */
-      border-radius: 5px; /* Slightly rounded corners */
-      margin-bottom: 10px;
+      width: min(150px, 100%);
+      height: 200px;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+      transition: transform 0.3s ease;
+      box-shadow:
+        inset 0 0 12px rgb(255 255 255 / 0.15),
+        0 4px 8px rgb(0 0 0 / 0.1);
     }
-
+    
+    .ranking-card:hover img,
+    .ranking-card:focus-within img {
+      transform: scale(1.03);
+    }
+    
     .ranking-card h3 {
-      margin: 0;
-      color: #0c1c3c;
-      font-size: 22px; /* Increased font size */
+      color: #111827;
+      font-size: clamp(18px, 4vw, 22px);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+    
+    .ranking-card p {
+      color: #6b7280;
+      font-size: clamp(14px, 3vw, 16px);
+      letter-spacing: 0.01em;
     }
 
+    /* Learner Ranking */
     .learner-ranking {
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
       justify-content: center;
-      margin: 20px 0;
-      flex-direction: column; /* Stack learners vertically */
-      align-items: center; /* Center align */
-    }
-
-    .learner-row {
-      display: flex;
-      justify-content: center;
-      margin: 10px 0; /* Space between rows */
+      padding: 1rem;
+      user-select: none;
+      width: 100%;
     }
 
     .learner-card {
+      background: #f9fafb;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.04);
       text-align: center;
-      margin: 0 10px;
+      flex: 0 0 auto;
+      min-width: 100px;
+      transition: transform 0.3s ease;
+      user-select: none;
     }
-
+    
+    .learner-card:hover,
+    .learner-card:focus-within {
+      transform: scale(1.1);
+      outline: none;
+      box-shadow: 0 12px 28px rgb(37 99 235 / 0.2);
+      background: #e0efff;
+    }
+    
     .learner-card img {
-      width: 60px; /* Increased size */
-      height: 60px; /* Increased size */
-      border-radius: 50%; /* Circular shape */
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.08);
+      pointer-events: none;
+      user-select: none;
+      transition: box-shadow 0.3s ease;
     }
-
+    
+    .learner-card:hover img,
+    .learner-card:focus-within img {
+      box-shadow: 0 10px 32px rgb(37 99 235 / 0.5);
+      transform: scale(1.05);
+    }
+    
     .learner-card h3 {
-      font-size: 24px; /* Increased font size */
-      color: #0c1c3c;
+      font-size: 1.125rem;
+      color: #111827;
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    
+    .learner-card p {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin: 0;
+      letter-spacing: 0.01em;
     }
 
-    .footer {
-      background: #0c1c3c;
-      color: white;
-      padding: 40px 20px 30px;
+    /* Footer */
+    footer {
+      background: #f9fafb;
       text-align: center;
-      margin-top: auto;
+      padding: 3rem 1rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+      user-select: none;
+      width: 100%;
+    }
+    
+    footer img {
+      height: 40px;
+      margin-bottom: 0.75rem;
+      filter: drop-shadow(0 0 4px rgba(0,0,0,0.1));
+      user-select: none;
+      max-width: 100%;
+    }
+    
+    .footer-text {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      color: #374151;
+      letter-spacing: 0.01em;
     }
 
-    .footer p {
-      font-weight: bold;
-      color: #e0e0e0;
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-
-    .social-icons img {
-      height: 30px;
-      margin: 10px;
-      filter: brightness(0) invert(1);
-      transition: transform 0.3s;
+    
+    .social-icons a img {
+      width: 28px;
+      height: 28px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+      user-select: none;
     }
-
-    .social-icons img:hover {
+    
+    .social-icons a:hover img,
+    .social-icons a:focus img {
+      filter: none;
       transform: scale(1.2);
+      outline: none;
     }
 
+    /* WhatsApp floating button */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       background: #25d366;
-      color: white;
       border-radius: 50%;
-      text-align: center;
-      line-height: 60px;
-      font-size: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      box-shadow: 0 6px 16px rgb(37, 211, 102, 0.6);
       text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease;
+      user-select: none;
       z-index: 1000;
     }
-
-    h1, h2 {
-      color: #0c1c3c;
-      font-weight: bold; /* Added bold styling */
+    
+    .whatsapp-float:hover,
+    .whatsapp-float:focus {
+      transform: scale(1.1);
+      outline: none;
     }
 
-    p {
-      color: #333;
-      line-height: 1.6;
-    }
+    /* Prevent horizontal overflow */
+    @media (max-width: 480px) {
+      .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
 
-    .ranking-card p {
-      color: #666;
-      font-size: 16px; /* Increased font size */
+      .description-card {
+        padding: 1.5rem 1rem !important;
+        margin: 0 0.25rem;
+      }
+
+      .ranking-system {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+        gap: 1.5rem;
+      }
+
+      .learner-ranking {
+        padding: 0.5rem;
+        gap: 1.5rem;
+      }
+
+      .hero {
+        padding: 0 0.25rem;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
-    <div class="logo">
-      <img src="logo-image.png" alt="Knowledge Hub Nepal" />
-    </div>
-    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <nav class="container" role="navigation" aria-label="Primary Navigation">
+      <a href="index.html" class="logo" aria-label="Knowledge Hub Nepal Home">
+        <img src="logo-image.png" alt="Knowledge Hub Nepal Logo" />
+      </a>
+      <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation menu" id="menuButton">&#9776;</button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="index.html" tabindex="0">Home</a>
+        <a href="about.html" tabindex="0">About Us</a>
+        <a href="courses.html" tabindex="0">Courses</a>
+        <a href="affiliates.html" tabindex="0">Affiliates</a>
+        <a href="dashboard.html" tabindex="0">Dashboard</a>
+        <a href="contact.html" tabindex="0">Contact Us</a>
+        <a href="sign-up.html" tabindex="0">Sign Up</a>
+      </div>
+    </nav>
   </header>
 
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="courses.html">Courses</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="sign-up.html">Sign Up</a>
-  </div>
-
-  <div class="main-content">
-    <div class="hero">
+  <main role="main" class="container">
+    <section class="hero" aria-label="Welcome message">
       Welcome to Knowledge Hub Nepal - Your Gateway to Learning and Success!
-    </div>
+    </section>
 
-    <div class="description">
-      <h2>About Us</h2>
-      <p>At Knowledge Hub Nepal, we are dedicated to providing high-quality educational resources and courses to help you enhance your skills and achieve your career goals. Our platform connects learners with industry experts and offers a variety of courses tailored to meet the needs of today's job market.</p>
-    </div>
+    <section class="description-card" aria-labelledby="aboutTitle" tabindex="0">
+      <h2 id="aboutTitle">About Us</h2>
+      <p>
+        At Knowledge Hub Nepal, we are dedicated to providing high-quality educational resources and courses to help you enhance your skills and achieve your career goals. Our platform connects learners with industry experts and offers a variety of courses tailored to meet the needs of today's job market.
+      </p>
+    </section>
 
-    <h2>Top Courses</h2>
-    <div class="ranking-system">
-      <div class="ranking-card">
-        <a href="course1.html"><img src="mini-lite.png" alt="Course 1 Image" /></a>
-        <h3>Course 1</h3>
-        <p>Details about Course 1</p>
+    <section aria-labelledby="topCoursesTitle" class="section">
+      <h2 id="topCoursesTitle" class="section-title">Top Courses</h2>
+      <div class="ranking-system" role="list">
+        <article class="ranking-card" role="listitem" tabindex="0">
+          <a href="payment-gateway.html" aria-label="Course 1 details">
+            <img src="mini-lite.png" alt="Course 1 Image" />
+          </a>
+          <h3>Course 1</h3>
+          <p>Details about Course 1</p>
+        </article>
+        <article class="ranking-card" role="listitem" tabindex="0">
+          <a href="course2.html" aria-label="Course 2 details">
+            <img src="lite.png" alt="Course 2 Image" />
+          </a>
+          <h3>Course 2</h3>
+          <p>Details about Course 2</p>
+        </article>
+        <article class="ranking-card" role="listitem" tabindex="0">
+          <a href="course3.html" aria-label="Course 3 details">
+            <img src="ultra.png" alt="Course 3 Image" />
+          </a>
+          <h3>Course 3</h3>
+          <p>Details about Course 3</p>
+        </article>
+        <article class="ranking-card" role="listitem" tabindex="0">
+          <a href="course4.html" aria-label="Course 4 details">
+            <img src="pro.png" alt="Course 4 Image" />
+          </a>
+          <h3>Course 4</h3>
+          <p>Details about Course 4</p>
+        </article>
       </div>
-      <div class="ranking-card">
-        <a href="course2.html"><img src="lite.png" alt="Course 2 Image" /></a>
-        <h3>Course 2</h3>
-        <p>Details about Course 2</p>
-      </div>
-      <div class="ranking-card">
-        <a href="course3.html"><img src="ultra.png" alt="Course 3 Image" /></a>
-        <h3>Course 3</h3>
-        <p>Details about Course 3</p>
-      </div>
-      <div class="ranking-card">
-        <a href="course4.html"><img src="pro.png" alt="Course 4 Image" /></a>
-        <h3>Course 4</h3>
-        <p>Details about Course 4</p>
-      </div>
-    </div>
+    </section>
 
-    <h2>Top Learners</h2>
-    <div class="learner-ranking">
-      <div class="learner-row">
-        <div class="learner-card">
+    <section aria-labelledby="topLearnersTitle" class="section">
+      <h2 id="topLearnersTitle" class="section-title">Top Learners</h2>
+      <div class="learner-ranking" role="list">
+        <article class="learner-card" role="listitem" tabindex="0">
           <img src="man-2.png" alt="Student B Image" />
           <h3>2</h3>
           <p>Earnings: $400</p>
-        </div>
-      </div>
-      <div class="learner-row">
-        <div class="learner-card">
+        </article>
+        <article class="learner-card" role="listitem" tabindex="0">
           <img src="man-1.png" alt="Student A Image" />
           <h3>1</h3>
           <p>Earnings: $500</p>
-        </div>
-        <div class="learner-card">
+        </article>
+        <article class="learner-card" role="listitem" tabindex="0">
           <img src="man-3.png" alt="Student C Image" />
           <h3>3</h3>
           <p>Earnings: $300</p>
-        </div>
+        </article>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <footer class="footer">
-    <div>
-      <img src="logo-image.png" alt="Logo" height="50" />
-      <p style="margin-top: 10px;">Enhanced Skills, Achieved Success</p>
+  <footer>
+    <div class="container" aria-label="Footer">
+      <img src="logo-image.png" alt="Knowledge Hub Nepal Logo" />
+      <p class="footer-text">Enhanced Skills, Achieved Success</p>
+      <nav class="social-icons" aria-label="Social Media Links">
+        <a href="https://www.facebook.com/prajjwal.kc108t" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" alt="Facebook icon" />
+        </a>
+        <a href="https://youtube.com/@lunchhubnepal?si=Kffc6O-395Jkekeg" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="https://img.icons8.com/ios-filled/50/000000/youtube-play.png" alt="YouTube icon" />
+        </a>
+        <a href="https://www.instagram.com/donkuunu?igsh=a3JoMGQwN2lod2lm" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png" alt="Instagram icon" />
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn icon" />
+        </a>
+        <a href="https://t.me/Prajjwal_kc" target="_blank" rel="noopener" aria-label="Telegram">
+          <img src="https://img.icons8.com/ios-filled/50/000000/telegram-app.png" alt="Telegram icon" />
+        </a>
+      </nav>
+      <p class="footer-text" style="margin-top: 0.75rem;">
+        © 2025 <strong>Knowledge Hub Nepal</strong>. All Rights Reserved.<br />
+        Developed By: <strong>Techup Technologies</strong>
+      </p>
     </div>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/prajjwal.kc108t" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"/></a>
-      <a href="https://youtube.com/@lunchhubnepal?si=Kffc6O-395Jkekeg" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png"/></a>
-      <a href="https://www.instagram.com/donkuunu?igsh=a3JoMGQwN2lod2lm" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/></a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"/></a>
-      <a href="https://t.me/Prajjwal_kc" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png"/></a>
-    </div>
-    <p style="margin-top: 10px;">© 2025 <strong>Knowledge Hub Nepal</strong>. All Rights Reserved.<br>Developed By: <strong>Techup Technologies</strong></p>
   </footer>
 
-  <a href="https://wa.me/9748765798" class="whatsapp-float" target="_blank">💬</a>
+  <a href="https://wa.me/9748765798" class="whatsapp-float" target="_blank" aria-label="WhatsApp chat link">💬</a>
 
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
-    }
-  </script>
+    (() => {
+      const menuButton = document.getElementById('menuButton');
+      const navLinks = document.getElementById('primary-navigation');
 
+      function toggleMenu() {
+        const expanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+        menuButton.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('show');
+      }
+      menuButton.addEventListener('click', toggleMenu);
+
+      // Close menu on link click (mobile)
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('show')) {
+            toggleMenu();
+          }
+        });
+      });
+
+      // Close menu on outside click or escape key
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuButton.contains(e.target) && navLinks.classList.contains('show')) {
+          toggleMenu();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('show')) {
+          toggleMenu();
+          menuButton.focus();
+        }
+      });
+    })();
+  </script>
 </body>
-</html>
+          </html>
