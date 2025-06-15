@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowthGrid | Trusted Affiliate Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff7e5f;
+            --dark: #0f0524;
+            --light: #f8f9fa;
+            --menu-bg: rgba(31, 24, 53, 0.95);
+            --transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --radius: 12px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            --glow: 0 0 25px rgba(110, 69, 226, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0524, #1a0933);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(15, 5, 36, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(114, 9, 183, 0.2);
+        }
+
+        /* Majestic Hamburger Menu */
+        .menu-wrapper {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 40px;
+            height: 30px;
+            cursor: pointer;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-line {
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .menu-toggle.active .menu-line:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .menu-toggle.active .menu-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .menu-toggle.active .menu-line:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Enhanced Dropdown Menu */
+        .dropdown-menu {
+            position: fixed;
+            top: 80px;
+            right: 30px;
+            width: 320px;
+            background: var(--menu-bg);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: var(--transition);
+            z-index: 999;
+            border: 1px solid rgba(114, 9, 183, 0.2);
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-item {
+            padding: 15px 25px;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            background: rgba(110, 69, 226, 0.1);
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .menu-link i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            width: 25px;
+            text-align: center;
+        }
+
+        .auth-section {
+            padding: 20px 25px 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 10px;
+        }
+
+        .auth-btn {
+            display: block;
+            padding: 12px;
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .signup-btn {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: rgba(31, 24, 53, 0.7);
+            border-radius: var(--radius);
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(114, 9, 183, 0.2);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(110, 69, 226, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            .about-section {
+                padding: 60px 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .dropdown-menu {
+                width: 280px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header with Majestic Hamburger Menu -->
+    <header>
+        <div class="menu-wrapper">
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="menu-item">
+                    <a href="#about" class="menu-link" onclick="toggleMenu()">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Us</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#benefits" class="menu-link" onclick="toggleMenu()">
+                        <i class="fas fa-star"></i>
+                        <span>Our Benefits</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#how-it-works" class="menu-link" onclick="toggleMenu()">
+                        <i class="fas fa-cogs"></i>
+                        <span>How It Works</span>
+                    </a>
+                </div>
+                
+                <div class="auth-section">
+                    <a href="login.html" class="auth-btn login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Partner Login
+                    </a>
+                    <a href="register.html" class="auth-btn signup-btn">
+                        <i class="fas fa-handshake"></i> Join Our Network
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">About GrowthGrid</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to <span class="highlight">GrowthGrid</span>, the most trusted affiliate marketing network in the digital space. We specialize in connecting ambitious marketers with premium digital products that convert.</p>
+                
+                <p>Founded in 2018, we've grown from a small team of marketing enthusiasts to a global network processing over <span class="highlight">$15 million</span> in affiliate payouts annually. Our mission is simple: create win-win partnerships where both our affiliates and product owners thrive.</p>
+                
+                <p>What sets us apart:</p>
+                <ul style="list-style-type: none; margin: 20px 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>35% standard commission</strong> - industry-leading rates</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>100% transparent tracking</strong> - real-time analytics</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Weekly reliable payouts</strong> - multiple payment methods</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Premium marketing assets</strong> - high-converting materials</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Dedicated support team</strong> - real human assistance</li>
+                </ul>
+                
+                <p>We rigorously vet all products in our network to ensure they deliver real value. When you promote with GrowthGrid, you can be confident you're offering quality solutions to your audience.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Team Working">
+            </div>
+        </div>
+
+        <div class="benefits-grid" id="benefits">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="benefit-title">Trusted Network</h3>
+                <p>All products undergo strict quality control. We maintain a 100% scam-free environment with verified vendors only.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="benefit-title">High Conversions</h3>
+                <p>Our products convert at 2-3x industry averages thanks to premium offers and optimized sales funnels.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3 class="benefit-title">Recurring Commissions</h3>
+                <p>Earn ongoing commissions from customer renewals and upsells - build true passive income streams.</p>
+            </div>
+        </div>
+
+        <div class="about-text" id="how-it-works" style="margin-top: 60px;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--secondary);">How Our Program Works</h3>
+            <p>Joining GrowthGrid is simple and risk-free:</p>
+            <ol style="margin: 20px 0 20px 30px; line-height: 2;">
+                <li><strong>Apply</strong> - Complete our quick affiliate application</li>
+                <li><strong>Access</strong> - Get immediate access to our partner dashboard</li>
+                <li><strong>Select</strong> - Choose from hundreds of high-converting products</li>
+                <li><strong>Promote</strong> - Use our marketing tools and assets</li>
+                <li><strong>Earn</strong> - Receive commissions on every sale</li>
+            </ol>
+            <p>Our team provides personalized onboarding to help you get started quickly. Whether you're new to affiliate marketing or an experienced promoter, we have the tools and support to help you succeed.</p>
+            <p style="margin-top: 30px; font-style: italic; color: var(--secondary);">"GrowthGrid transformed my approach to affiliate marketing. The quality of products and support system helped me scale from $500/month to over $15k/month in just one year." - Mark T., Diamond Level Affiliate</p>
+        </div>
+    </section>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            
+            menuToggle.classList.toggle('active');
+            dropdownMenu.classList.toggle('active');
+            
+            // Close when clicking outside
+            if (dropdownMenu.classList.contains('active')) {
+                document.addEventListener('click', closeMenuOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+
+        function closeMenuOutside(event) {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!event.target.closest('.menu-wrapper')) {
+                menuToggle.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+
+        // Create particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 20 : 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particles.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+        });
+    </script>
+</body>
+  </html>
